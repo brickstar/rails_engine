@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :transaction do
-    references ""
+    invoice nil
     credit_card_number ""
     result "MyString"
   end
