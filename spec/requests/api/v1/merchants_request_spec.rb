@@ -58,4 +58,27 @@ describe "Merchants API" do
     expect(merchant).to have_key(:id)
     expect(merchant).to have_key(:name)
   end
+
+  it "sends a list of merchants, find_all by name" do
+    merchant_name = 'Matt'
+
+    create(:merchant, name: merchant_name)
+    create(:merchant, name: merchant_name)
+
+    get "/api/v1/merchants/find_all?name=#{merchant_name}"
+
+    expect(response).to be_successful
+
+    merchants = JSON.parse(response.body, symbolize_names: true)
+    merchant1 = merchants.first
+    merchant2 = merchants.last
+
+    expect(merchants.count).to eq(2)
+    expect(merchant1).to have_key(:id)
+    expect(merchant1).to have_key(:name)
+    expect(merchant1[:name]).to eq('Matt')
+    expect(merchant2).to have_key(:id)
+    expect(merchant2).to have_key(:name)
+    expect(merchant2[:name]).to eq('Matt')
+  end
 end
