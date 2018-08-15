@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :transaction do
-    references ""
-    credit_card_number ""
-    result "MyString"
+    credit_card_number Faker::Finance.credit_card(:mastercard)
+    result 1
+    invoice
   end
 end

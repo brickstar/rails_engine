@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :invoice do
-    references ""
-    references ""
-    status "MyString"
+    customer
+    merchant
+    status 0
   end
 end
