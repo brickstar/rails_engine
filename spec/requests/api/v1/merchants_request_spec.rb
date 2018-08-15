@@ -115,4 +115,17 @@ describe "Merchants API" do
     expect(merchant2).to have_key(:name)
     expect(merchant2[:name]).to eq('Matt')
   end
+
+  it "sends a random merchant" do
+    merchant = create(:merchant)
+
+    get "/api/v1/merchants/random"
+
+    expect(response).to be_successful
+
+    merchant = JSON.parse(response.body, symbolize_names: true)
+
+    expect(merchant).to have_key(:id)
+    expect(merchant).to have_key(:name)
+  end
 end
