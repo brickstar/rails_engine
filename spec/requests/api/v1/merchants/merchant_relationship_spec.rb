@@ -12,9 +12,9 @@ describe "Merchants relationships API" do
     items = JSON.parse(response.body, symbolize_names: true)
 
     expect(items.count).to eq(3)
-    expect(item.first).to have_key(:id)
-    expect(item.first).to have_key(:name)
-    expect(item.first).to_not have_key(:created_at)
-    expect(item.first).to_not have_key(:updated_at)
+    expect(items.first).to have_key(:id)
+    expect(items.first).to have_key(:name)
+    expect(items.first).to_not have_key(:created_at)
+    expect(items.first).to_not have_key(:updated_at)
   end
 end
