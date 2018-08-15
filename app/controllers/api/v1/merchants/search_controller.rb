@@ -4,12 +4,14 @@ class Api::V1::Merchants::SearchController < ApplicationController
   end
 
   def show
+    binding.pry
+    
     render json: Merchant.find_by(search_params)
   end
 
   private
 
   def search_params
-    params.permit(:id, :name)
+    params.permit(:id, :name, :created_at, :updated_at)
   end
 end
