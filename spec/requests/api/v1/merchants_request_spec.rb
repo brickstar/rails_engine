@@ -47,7 +47,9 @@ describe "Merchants API" do
   end
 
   it "sends a single merchant, find by created_at" do
-    merchant = create(:merchant)
+    created_at = "2012-03-27 14:53:59 UTC"
+
+    merchant = create(:merchant, created_at: created_at)
 
     get "/api/v1/merchants/find?created_at=#{merchant.created_at}"
 

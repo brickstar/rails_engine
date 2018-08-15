@@ -4,8 +4,6 @@ class Api::V1::Merchants::SearchController < ApplicationController
   end
 
   def show
-    binding.pry
-    
     render json: Merchant.find_by(search_params)
   end
 
