@@ -46,11 +46,10 @@ describe "Merchants API" do
     expect(merchant).to have_key(:name)
   end
 
-  it "sends a single merchant, find by timestamps" do
+  it "sends a single merchant, find by created_at" do
     created_at = "2012-03-27 14:53:59 UTC"
-    updated_at = "2012-03-27 14:53:59 UTC"
 
-    merchant = create(:merchant, created_at: created_at, updated_at: updated_at)
+    merchant = create(:merchant, created_at: created_at)
 
     get "/api/v1/merchants/find?created_at=#{merchant.created_at}"
 
@@ -62,8 +61,14 @@ describe "Merchants API" do
     expect(merchant).to have_key(:name)
     expect(merchant).to_not have_key(:created_at)
     expect(merchant).to_not have_key(:updated_at)
+  end
 
-    get "/api/v1/merchants/find?created_at=#{merchant.updated_at}"
+  it "sends a single merchant, find by updated_at" do
+    updated_at = "2012-03-27 14:53:59 UTC"
+
+    merchant = create(:merchant, updated_at: updated_at)
+
+    get "/api/v1/merchants/find?updated_at=#{merchant.updated_at}"
 
     expect(response).to be_successful
 
