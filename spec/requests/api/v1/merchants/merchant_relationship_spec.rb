@@ -30,8 +30,8 @@ describe "Merchants relationships API" do
 
     expect(invoices.count).to eq(3)
     expect(invoices.first).to have_key(:id)
-    expect(invoices.first).to have_key(:name)
-    expect(invoices.first).to_not have_key(:created_at)
-    expect(invoices.first).to_not have_key(:updated_at)
+    expect(invoices.first).to have_key(:customer_id)
+    expect(invoices.first).to have_key(:merchant_id)
+    expect(invoices.first).to have_key(:status)
   end
 end
