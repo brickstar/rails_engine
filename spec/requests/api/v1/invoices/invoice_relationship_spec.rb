@@ -62,7 +62,7 @@ describe "Invoices relationships API" do
     expect(items.first).to have_key(:merchant_id)
 
   end
-  
+
   it "sends a customer for an invoice" do
     customer = create(:customer)
     invoice = create(:invoice, customer: customer)
@@ -74,8 +74,21 @@ describe "Invoices relationships API" do
     customer = JSON.parse(response.body, symbolize_names: true)
 
     expect(customer).to have_key(:id)
-    expect(customer).to have_key(:customer_id)
-    expect(customer).to have_key(:merchant_id)
-    expect(customer).to have_key(:status)
+    expect(customer).to have_key(:first_name)
+    expect(customer).to have_key(:last_name)
+  end
+
+  it "sends a merchant for an invoice" do
+    merchant = create(:merchant)
+    invoice = create(:invoice, merchant: merchant)
+
+    get "/api/v1/invoices/#{invoice.id}/merchant"
+
+    expect(response).to be_successful
+
+    merchant = JSON.parse(response.body, symbolize_names: true)
+
+    expect(merchant).to have_key(:id)
+    expect(merchant).to have_key(:name)
   end
 end
