@@ -14,4 +14,13 @@ class Item < ApplicationRecord
     .order("revenue DESC")
     .limit(limit)
   end
+
+  def self.with_most_items(limit=5)
+    select("items.*, sum(invoice_items.quantity) AS item_count")
+    .joins(:invoice_items, invoices: :transactions)
+    .merge(Transaction.unscoped.success)
+    .group(:id)
+    .order("item_count DESC")
+    .limit(limit)
+  end
 end
