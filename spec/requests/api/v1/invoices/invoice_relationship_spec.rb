@@ -20,7 +20,7 @@ describe "Invoices relationships API" do
     expect(transactions.first).to_not have_key(:updated_at)
   end
 
-  it "sends a list of invoice_items for a invoice" do
+  it "sends a list of invoice_items for an invoice" do
     invoice = create(:invoice)
     invoice_items = create_list(:invoice_item, 3, invoice: invoice)
 
@@ -38,7 +38,7 @@ describe "Invoices relationships API" do
     expect(invoice_items.first).to have_key(:unit_price)
   end
 
-  it "sends a list of items for a invoice" do
+  it "sends a list of items for an invoice" do
     invoice = create(:invoice)
     item_1 = create(:item)
     item_2 = create(:item)
@@ -60,5 +60,22 @@ describe "Invoices relationships API" do
     expect(items.first).to have_key(:description)
     expect(items.first).to have_key(:unit_price)
     expect(items.first).to have_key(:merchant_id)
+
+  end
+  
+  it "sends a customer for an invoice" do
+    customer = create(:customer)
+    invoice = create(:invoice, customer: customer)
+
+    get "/api/v1/invoices/#{invoice.id}/customer"
+
+    expect(response).to be_successful
+
+    customer = JSON.parse(response.body, symbolize_names: true)
+
+    expect(customer).to have_key(:id)
+    expect(customer).to have_key(:customer_id)
+    expect(customer).to have_key(:merchant_id)
+    expect(customer).to have_key(:status)
   end
 end
