@@ -146,6 +146,11 @@ describe "InvoiceItems API" do
     invoice_item = JSON.parse(response.body, symbolize_names: true)
 
     expect(invoice_item).to have_key(:id)
-    expect(invoice_item).to have_key(:name)
+    expect(invoice_item).to have_key(:invoice_id)
+    expect(invoice_item).to have_key(:item_id)
+    expect(invoice_item).to have_key(:quantity)
+    expect(invoice_item).to have_key(:unit_price)
+    expect(invoice_item).to_not have_key(:created_at)
+    expect(invoice_item).to_not have_key(:updated_at)
   end
 end
