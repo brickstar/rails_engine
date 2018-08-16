@@ -89,25 +89,23 @@ describe "Customer API" do
   end
 
   it "sends a single customer, find by name" do
-    skip
     customer = create(:customer)
 
-    get "/api/v1/customers/find?name=#{customer.name}"
+    get "/api/v1/customers/find?name=#{customer.first_name}"
 
     expect(response).to be_successful
 
     customer = JSON.parse(response.body, symbolize_names: true)
 
     expect(customer).to have_key(:id)
-    expect(customer).to have_key(:name)
+    expect(customer).to have_key(:first_name)
   end
 
-  it "sends a list of customers, find_all by name" do
-    skip
+  it "sends a list of customers, find_all by first name" do
     customer_name = 'Matt'
 
-    create(:customer, name: customer_name)
-    create(:customer, name: customer_name)
+    create(:customer, first_name: customer_name)
+    create(:customer, first_name: customer_name)
 
     get "/api/v1/customers/find_all?name=#{customer_name}"
 
@@ -119,11 +117,34 @@ describe "Customer API" do
 
     expect(customers.count).to eq(2)
     expect(customer1).to have_key(:id)
-    expect(customer1).to have_key(:name)
-    expect(customer1[:name]).to eq('Matt')
+    expect(customer1).to have_key(:first_name)
+    expect(customer1[:first_name]).to eq('Matt')
     expect(customer2).to have_key(:id)
-    expect(customer2).to have_key(:name)
-    expect(customer2[:name]).to eq('Matt')
+    expect(customer2).to have_key(:first_name)
+    expect(customer2[:first_name]).to eq('Matt')
+  end
+
+  it "sends a list of customers, find_all by last name" do
+    customer_name = 'Matt'
+
+    create(:customer, last_name: customer_name)
+    create(:customer, last_name: customer_name)
+
+    get "/api/v1/customers/find_all?name=#{customer_name}"
+
+    expect(response).to be_successful
+
+    customers = JSON.parse(response.body, symbolize_names: true)
+    customer1 = customers.first
+    customer2 = customers.last
+
+    expect(customers.count).to eq(2)
+    expect(customer1).to have_key(:id)
+    expect(customer1).to have_key(:last_name)
+    expect(customer1[:last_name]).to eq('Matt')
+    expect(customer2).to have_key(:id)
+    expect(customer2).to have_key(:last_name)
+    expect(customer2[:last_name]).to eq('Matt')
   end
 
   it "sends a random customer" do
