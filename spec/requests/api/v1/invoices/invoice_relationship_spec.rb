@@ -37,4 +37,28 @@ describe "Invoices relationships API" do
     expect(invoice_items.first).to have_key(:quantity)
     expect(invoice_items.first).to have_key(:unit_price)
   end
+
+  it "sends a list of items for a invoice" do
+    invoice = create(:invoice)
+    item_1 = create(:item)
+    item_2 = create(:item)
+    item_3 = create(:item)
+    create(:invoice_item, item: item_1, invoice: invoice)
+    create(:invoice_item, item: item_2, invoice: invoice)
+    create(:invoice_item, item: item_3, invoice: invoice)
+    create(:invoice_item, item: item_1)
+
+    get "/api/v1/invoices/#{invoice.id}/items"
+
+    expect(response).to be_successful
+
+    items = JSON.parse(response.body, symbolize_names: true)
+
+    expect(items.count).to eq(3)
+    expect(items.first).to have_key(:id)
+    expect(items.first).to have_key(:name)
+    expect(items.first).to have_key(:description)
+    expect(items.first).to have_key(:unit_price)
+    expect(items.first).to have_key(:merchant_id)
+  end
 end
