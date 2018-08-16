@@ -50,17 +50,19 @@ describe "Transaction API" do
   it "sends a single transaction, find by updated_at" do
     updated_at = "2012-03-27 14:53:59 UTC"
 
-    transaction = create(:transaction, updated_at: updated_at)
+    transaction_1 = create(:transaction)
+    transaction_2 = create(:transaction, updated_at: updated_at)
 
-    get "/api/v1/transactions/find?updated_at=#{transaction.updated_at}"
+    get "/api/v1/transactions/find?updated_at=#{updated_at}"
 
     expect(response).to be_successful
 
-    transaction = JSON.parse(response.body, symbolize_names: true)
+    transaction_json = JSON.parse(response.body, symbolize_names: true)
 
-    expect(transaction).to have_key(:id)
-    expect(transaction).to have_key(:credit_card_number)
-    expect(transaction).to have_key(:result)
+    expect(transaction_json).to have_key(:id)
+    expect(transaction_json[:id]).to eq(transaction_2.id)
+    expect(transaction_json).to have_key(:credit_card_number)
+    expect(transaction_json).to have_key(:result)
   end
 
   it "sends a single transaction, find by credit_card_number" do
