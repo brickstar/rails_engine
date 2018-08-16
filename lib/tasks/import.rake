@@ -20,7 +20,7 @@ namespace :import do
     end
 
     CSV.foreach('./data/transactions.csv', headers: true, header_converters: :symbol) do |row|
-      Transaction.create(row.to_h.slice(:invoice_id, :credit_card_number, :result))
+      Transaction.create(row.to_h.slice(:invoice_id, :credit_card_number, :result, :created_at, :updated_at))
     end
 
     CSV.foreach('./data/invoice_items.csv', headers: true, header_converters: :symbol) do |row|
