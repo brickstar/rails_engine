@@ -36,99 +36,106 @@ describe "Customer API" do
     expect(customer).to_not have_key(:updated_at)
   end
 
-  # it "sends a single merchant, find by id" do
-  #   merchant = create(:merchant)
-  #
-  #   get "/api/v1/merchants/find?id=#{merchant.id}"
-  #
-  #   expect(response).to be_successful
-  #
-  #   merchant = JSON.parse(response.body, symbolize_names: true)
-  #
-  #   expect(merchant).to have_key(:id)
-  #   expect(merchant).to have_key(:name)
-  # end
-  #
-  # it "sends a single merchant, find by created_at" do
-  #   created_at = "2012-03-27 14:53:59 UTC"
-  #
-  #   merchant = create(:merchant, created_at: created_at)
-  #
-  #   get "/api/v1/merchants/find?created_at=#{merchant.created_at}"
-  #
-  #   expect(response).to be_successful
-  #
-  #   merchant = JSON.parse(response.body, symbolize_names: true)
-  #
-  #   expect(merchant).to have_key(:id)
-  #   expect(merchant).to have_key(:name)
-  #   expect(merchant).to_not have_key(:created_at)
-  #   expect(merchant).to_not have_key(:updated_at)
-  # end
-  #
-  # it "sends a single merchant, find by updated_at" do
-  #   updated_at = "2012-03-27 14:53:59 UTC"
-  #
-  #   merchant = create(:merchant, updated_at: updated_at)
-  #
-  #   get "/api/v1/merchants/find?updated_at=#{merchant.updated_at}"
-  #
-  #   expect(response).to be_successful
-  #
-  #   merchant = JSON.parse(response.body, symbolize_names: true)
-  #
-  #   expect(merchant).to have_key(:id)
-  #   expect(merchant).to have_key(:name)
-  #   expect(merchant).to_not have_key(:created_at)
-  #   expect(merchant).to_not have_key(:updated_at)
-  # end
-  #
-  # it "sends a single merchant, find by name" do
-  #   merchant = create(:merchant)
-  #
-  #   get "/api/v1/merchants/find?name=#{merchant.name}"
-  #
-  #   expect(response).to be_successful
-  #
-  #   merchant = JSON.parse(response.body, symbolize_names: true)
-  #
-  #   expect(merchant).to have_key(:id)
-  #   expect(merchant).to have_key(:name)
-  # end
-  #
-  # it "sends a list of merchants, find_all by name" do
-  #   merchant_name = 'Matt'
-  #
-  #   create(:merchant, name: merchant_name)
-  #   create(:merchant, name: merchant_name)
-  #
-  #   get "/api/v1/merchants/find_all?name=#{merchant_name}"
-  #
-  #   expect(response).to be_successful
-  #
-  #   merchants = JSON.parse(response.body, symbolize_names: true)
-  #   merchant1 = merchants.first
-  #   merchant2 = merchants.last
-  #
-  #   expect(merchants.count).to eq(2)
-  #   expect(merchant1).to have_key(:id)
-  #   expect(merchant1).to have_key(:name)
-  #   expect(merchant1[:name]).to eq('Matt')
-  #   expect(merchant2).to have_key(:id)
-  #   expect(merchant2).to have_key(:name)
-  #   expect(merchant2[:name]).to eq('Matt')
-  # end
-  #
-  # it "sends a random merchant" do
-  #   merchant = create(:merchant)
-  #
-  #   get "/api/v1/merchants/random"
-  #
-  #   expect(response).to be_successful
-  #
-  #   merchant = JSON.parse(response.body, symbolize_names: true)
-  #
-  #   expect(merchant).to have_key(:id)
-  #   expect(merchant).to have_key(:name)
-  # end
+  it "sends a single customer, find by id" do
+    customer = create(:customer)
+
+    get "/api/v1/customers/find?id=#{customer.id}"
+
+    expect(response).to be_successful
+
+    customer = JSON.parse(response.body, symbolize_names: true)
+
+    expect(customer).to have_key(:id)
+    expect(customer).to have_key(:first_name)
+    expect(customer).to have_key(:last_name)
+    expect(customer).to_not have_key(:created_at)
+    expect(customer).to_not have_key(:updated_at)
+  end
+
+  it "sends a single customer, find by created_at" do
+    created_at = "2012-03-27 14:53:59 UTC"
+
+    customer = create(:customer, created_at: created_at)
+
+    get "/api/v1/customers/find?created_at=#{customer.created_at}"
+
+    expect(response).to be_successful
+
+    customer = JSON.parse(response.body, symbolize_names: true)
+
+    expect(customer).to have_key(:id)
+    expect(customer).to have_key(:first_name)
+    expect(customer).to have_key(:last_name)
+    expect(customer).to_not have_key(:created_at)
+    expect(customer).to_not have_key(:updated_at)
+  end
+
+  it "sends a single customer, find by updated_at" do
+    updated_at = "2012-03-27 14:53:59 UTC"
+
+    customer = create(:customer, updated_at: updated_at)
+
+    get "/api/v1/customers/find?updated_at=#{customer.updated_at}"
+
+    expect(response).to be_successful
+
+    customer = JSON.parse(response.body, symbolize_names: true)
+
+    expect(customer).to have_key(:id)
+    expect(customer).to have_key(:first_name)
+    expect(customer).to have_key(:last_name)
+    expect(customer).to_not have_key(:created_at)
+    expect(customer).to_not have_key(:updated_at)
+  end
+
+  it "sends a single customer, find by name" do
+    skip
+    customer = create(:customer)
+
+    get "/api/v1/customers/find?name=#{customer.name}"
+
+    expect(response).to be_successful
+
+    customer = JSON.parse(response.body, symbolize_names: true)
+
+    expect(customer).to have_key(:id)
+    expect(customer).to have_key(:name)
+  end
+
+  it "sends a list of customers, find_all by name" do
+    skip
+    customer_name = 'Matt'
+
+    create(:customer, name: customer_name)
+    create(:customer, name: customer_name)
+
+    get "/api/v1/customers/find_all?name=#{customer_name}"
+
+    expect(response).to be_successful
+
+    customers = JSON.parse(response.body, symbolize_names: true)
+    customer1 = customers.first
+    customer2 = customers.last
+
+    expect(customers.count).to eq(2)
+    expect(customer1).to have_key(:id)
+    expect(customer1).to have_key(:name)
+    expect(customer1[:name]).to eq('Matt')
+    expect(customer2).to have_key(:id)
+    expect(customer2).to have_key(:name)
+    expect(customer2[:name]).to eq('Matt')
+  end
+
+  it "sends a random customer" do
+    customer = create(:customer)
+
+    get "/api/v1/customers/random"
+
+    expect(response).to be_successful
+
+    customer = JSON.parse(response.body, symbolize_names: true)
+
+    expect(customer).to have_key(:id)
+    expect(customer).to have_key(:first_name)
+  end
 end
