@@ -9,6 +9,7 @@ describe "Customer API" do
     expect(response).to be_successful
 
     customers = JSON.parse(response.body, symbolize_names: true)
+    
     customer = customers.first
 
     expect(customers.count).to eq(3)
