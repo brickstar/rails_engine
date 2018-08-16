@@ -1,20 +1,23 @@
 require 'rails_helper'
 
 describe "Merchants business intelligence API" do
-  describe "/merchants/most_revenue" do
-    before(:each) do
-      @customer = create(:customer)
-      @merchant1 = create(:merchant)
-      @merchant2 = create(:merchant)
-      @merchant3 = create(:merchant)
-      @invoice1 = create(:invoice, customer: @customer, merchant: @merchant1)
-      @invoice2 = create(:invoice, customer: @customer, merchant: @merchant2)
-      @invoice3 = create(:invoice, customer: @customer, merchant: @merchant3)
-      create_list(:invoice_item, 5, invoice: @invoice1)
-      create_list(:invoice_item, 3, invoice: @invoice2)
-      create_list(:invoice_item, 1, invoice: @invoice3)
-    end
+  before(:each) do
+    @customer = create(:customer)
+    @merchant1 = create(:merchant)
+    @merchant2 = create(:merchant)
+    @merchant3 = create(:merchant)
+    @invoice1 = create(:invoice, customer: @customer, merchant: @merchant1)
+    @invoice2 = create(:invoice, customer: @customer, merchant: @merchant2)
+    @invoice3 = create(:invoice, customer: @customer, merchant: @merchant3)
+    transaction1 = create(:transaction, invoice: @invoice1)
+    transaction2 = create(:transaction, invoice: @invoice2)
+    transaction3 = create(:transaction, invoice: @invoice3)
+    create_list(:invoice_item, 5, invoice: @invoice1)
+    create_list(:invoice_item, 3, invoice: @invoice2)
+    create_list(:invoice_item, 1, invoice: @invoice3)
+  end
 
+  describe "/merchants/most_revenue" do
     it "sends a list of merchants with most revenue" do
       get "/api/v1/merchants/most_revenue?quantity=2"
 
@@ -46,22 +49,6 @@ describe "Merchants business intelligence API" do
   end
 
   describe "/merchants/most_items" do
-    before(:each) do
-      @customer = create(:customer)
-      @merchant1 = create(:merchant)
-      @merchant2 = create(:merchant)
-      @merchant3 = create(:merchant)
-      @invoice1 = create(:invoice, customer: @customer, merchant: @merchant1)
-      @invoice2 = create(:invoice, customer: @customer, merchant: @merchant2)
-      @invoice3 = create(:invoice, customer: @customer, merchant: @merchant3)
-      transaction1 = create(:transaction, invoice: @invoice1)
-      transaction2 = create(:transaction, invoice: @invoice2)
-      transaction3 = create(:transaction, invoice: @invoice3)
-      create_list(:invoice_item, 5, invoice: @invoice1)
-      create_list(:invoice_item, 3, invoice: @invoice2)
-      create_list(:invoice_item, 1, invoice: @invoice3)
-    end
-
     it "sends a list of merchants with most items" do
       get "/api/v1/merchants/most_items?quantity=2"
 
