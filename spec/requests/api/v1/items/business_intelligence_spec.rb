@@ -80,29 +80,4 @@ describe "Items business intelligence API" do
       expect(items[0][:id]).to eq(@item1.id)
     end
   end
-
-  describe "/items/revenue" do
-    it "returns total revenue for date across all items" do
-      skip
-      get "/api/v1/items/revenue?date=2012-03-16"
-
-      expect(response).to be_successful
-
-      total_revenue = JSON.parse(response.body, symbolize_names: true)
-
-      expect(total_revenue).to have_key(:total_revenue)
-      expect(total_revenue[:total_revenue]).to eq("0.08")
-      expect(total_revenue).to_not have_key(:created_at)
-      expect(total_revenue).to_not have_key(:updated_at)
-
-      get "/api/v1/items/revenue?date=2019-03-16"
-
-      expect(response).to be_successful
-
-      total_revenue = JSON.parse(response.body, symbolize_names: true)
-
-      expect(total_revenue).to have_key(:total_revenue)
-      expect(total_revenue[:total_revenue]).to eq("0")
-    end
-  end
 end
