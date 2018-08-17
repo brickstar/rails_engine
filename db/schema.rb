@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_14_232927) do
+ActiveRecord::Schema.define(version: 2018_08_17_040554) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "citext"
   enable_extension "plpgsql"
 
   create_table "customers", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
+    t.citext "first_name"
+    t.citext "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -44,8 +45,8 @@ ActiveRecord::Schema.define(version: 2018_08_14_232927) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
+    t.citext "name"
+    t.citext "description"
     t.integer "unit_price"
     t.bigint "merchant_id"
     t.datetime "created_at", null: false
@@ -54,14 +55,14 @@ ActiveRecord::Schema.define(version: 2018_08_14_232927) do
   end
 
   create_table "merchants", force: :cascade do |t|
-    t.string "name"
+    t.citext "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "transactions", force: :cascade do |t|
     t.bigint "invoice_id"
-    t.string "credit_card_number"
+    t.citext "credit_card_number"
     t.integer "result"
     t.datetime "created_at"
     t.datetime "updated_at"
