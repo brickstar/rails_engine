@@ -11,8 +11,9 @@ Rails.application.routes.draw do
       end
 
       resources :merchants, only: [:index, :show] do
-        get  '/items', to: 'merchant_items#index'
-        get  '/invoices', to: 'merchant_invoices#index'
+        get '/items', to: 'merchant_items#index'
+        get '/invoices', to: 'merchant_invoices#index'
+        get '/revenue', to: 'merchant_revenue#show'
       end
 
       namespace :invoice_items do
@@ -22,8 +23,8 @@ Rails.application.routes.draw do
       end
 
       resources :invoice_items, only: [:index, :show] do
-        get  '/item', to: 'invoice_items_item#show'
-        get  '/invoice', to: 'invoice_items_invoice#show'
+        get '/item', to: 'invoice_items_item#show'
+        get '/invoice', to: 'invoice_items_invoice#show'
       end
 
       namespace :invoices do
@@ -33,11 +34,11 @@ Rails.application.routes.draw do
       end
 
       resources :invoices, only: [:index, :show] do
-        get  '/transactions', to: 'invoice_transactions#index'
-        get  '/invoice_items', to: 'invoice_invoice_items#index'
-        get  '/items', to: 'invoices_items#index'
-        get  '/customer', to: 'invoice_customer#show'
-        get  '/merchant', to: 'invoice_merchant#show'
+        get '/transactions', to: 'invoice_transactions#index'
+        get '/invoice_items', to: 'invoice_invoice_items#index'
+        get '/items', to: 'invoices_items#index'
+        get '/customer', to: 'invoice_customer#show'
+        get '/merchant', to: 'invoice_merchant#show'
       end
 
       namespace :items do
@@ -49,8 +50,8 @@ Rails.application.routes.draw do
       end
 
       resources :items, only: [:index, :show] do
-        get  '/merchant', to: 'item_merchant#show'
-        get  '/invoice_items', to: 'item_invoice_items#show'
+        get '/merchant', to: 'item_merchant#show'
+        get '/invoice_items', to: 'item_invoice_items#show'
       end
 
       namespace :transactions do
@@ -70,8 +71,8 @@ Rails.application.routes.draw do
       end
 
       resources :customers, only: [:index, :show] do
-        get  '/invoices', to: 'customer_invoices#index'
-        get  '/transactions', to: 'customer_transactions#index'
+        get '/invoices', to: 'customer_invoices#index'
+        get '/transactions', to: 'customer_transactions#index'
       end
     end
   end
