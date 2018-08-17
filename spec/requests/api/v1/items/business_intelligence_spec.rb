@@ -82,7 +82,7 @@ describe "Items business intelligence API" do
   end
 
   describe "/items/revenue" do
-    xit "returns total revenue for date across all items" do
+    it "returns total revenue for date across all items" do
       get "/api/v1/items/revenue?date=2012-03-16"
 
       expect(response).to be_successful
@@ -94,7 +94,7 @@ describe "Items business intelligence API" do
       expect(total_revenue).to_not have_key(:created_at)
       expect(total_revenue).to_not have_key(:updated_at)
 
-      get "/api/v1/merchants/revenue?date=2019-03-16"
+      get "/api/v1/items/revenue?date=2019-03-16"
 
       expect(response).to be_successful
 
