@@ -5,7 +5,7 @@ This is a Rails-based versioned JSON API built using ActiveRecord that allows us
 ##
 
 ### Setup
-To use this application, clone the following repository repository:
+To use this application clone the following repository:
 
 ```
 $ git clone https://github.com/brickstar/rails_engine
