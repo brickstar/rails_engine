@@ -22,7 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-# rails_engine
 # Rails Engine
 
 This is a Rails-based versioned JSON API built using ActiveRecord that allows users to consume data from the SalesEngine data schema.
@@ -65,9 +64,41 @@ $ rails s
 ``RSpec-Rails 3.8.0``
 
 ##
+## Endpoints
+
+###### ``` *  All references to :id in endpoints should be replaced with an        integer corresponding to the desired record  *```
 #### Merchant Endpoints
-Request Url
+
+##### Index
+###### Request Url
 ``localhost:3000/api/v1/merchants``
+###### Output
+```
+[
+  {
+    "id":1,
+    "name":"Schroeder-Jerde"
+  },
+  {
+    "id":2,
+    "name":"Klein, Rempel and Jones"
+  },
+  {
+    "id":3,
+    "name":"Willms and Sons"
+  }
+]
+```
+##### Show
+###### Request URL
+``localhost:3000/api/v1/merchants/:id``
+###### Output
+```
+{
+  "id":1,
+  "name":"Schroeder-Jerde"
+}
+```
 ##
 ##
 #### Item Endpoints
