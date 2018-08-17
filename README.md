@@ -94,25 +94,25 @@ localhost:3000/api/v1/items
 ```json
 [
   {
-	"id": 1,
-	"description": "Nihil autem sit odio inventore deleniti. Est laudantium ratione 	distinctio laborum. Minus voluptatem nesciunt assumenda dicta voluptatum porro.",
-	"merchant_id": 1,
-	"name": "Item Qui Esse",
-	"unit_price": "751.07"
+    "id": 1,
+    "description": "Nihil autem sit odio inventore deleniti. Est laudantium ratione 	distinctio laborum. Minus voluptatem nesciunt assumenda dicta voluptatum porro.",
+    "merchant_id": 1,
+    "name": "Item Qui Esse",
+    "unit_price": "751.07"
   },
   {
-	"id": 2,
-	"description": "Cumque consequuntur ad. Fuga tenetur illo molestias enim aut iste. 	Provident quo hic aut. Aut quidem voluptates dolores. Dolorem quae ab alias tempora.",
-	"merchant_id": 1,
-	"name": "Item Autem Minima",
-	"unit_price": "670.76"
+    "id": 2,
+    "description": "Cumque consequuntur ad. Fuga tenetur illo molestias enim aut iste. 	Provident quo hic aut. Aut quidem voluptates dolores. Dolorem quae ab alias tempora.",
+    "merchant_id": 1,
+    "name": "Item Autem Minima",
+    "unit_price": "670.76"
   },
   {
-	"id": 3,
-	"description": "Sunt officia eum qui molestiae. Nesciunt quidem cupiditate reiciendis est commodi non. Atque eveniet sed. Illum excepturi praesentium reiciendis voluptatibus eveniet odit perspiciatis. Odio optio nisi rerum nihil ut.",
-	"merchant_id": 1,
-	"name": "Item Ea Voluptatum",
-	"unit_price": "323.01"
+    "id": 3,
+    "description": "Sunt officia eum qui molestiae. Nesciunt quidem cupiditate reiciendis est commodi non. Atque eveniet sed. Illum excepturi praesentium reiciendis voluptatibus eveniet odit perspiciatis. Odio optio nisi rerum nihil ut.",
+    "merchant_id": 1,
+    "name": "Item Ea Voluptatum",
+    "unit_price": "323.01"
   }
 ]
 ```
@@ -140,22 +140,22 @@ localhost:3000/api/v1/invoices
 ```json
 [
   {
-	"id": 1,
+    "id": 1,
     "customer_id": 1,
-	"merchant_id": 26,
-	"status": "shipped"
+    "merchant_id": 26,
+    "status": "shipped"
   },
   {
-	"id": 2,
-	"customer_id": 1,
-	"merchant_id": 75,
-	"status": "shipped"
+    "id": 2,
+    "customer_id": 1,
+    "merchant_id": 75,
+    "status": "shipped"
   },
   {
-	"id": 3,
-	"customer_id": 1,
-	"merchant_id": 78,
-	"status": "shipped"
+    "id": 3,
+    "customer_id": 1,
+    "merchant_id": 78,
+    "status": "shipped"
   }
 ]
 ```
@@ -231,22 +231,22 @@ localhost:3000/api/v1/transactions
 ```json
 [
   {
-	"id": 1,
-	"invoice_id": 1,
-	"credit_card_number": "4654405418249632",
-	"result": "success"
+    "id": 1,
+    "invoice_id": 1,
+    "credit_card_number": "4654405418249632",
+    "result": "success"
   },
   {
-	"id": 2,
-	"invoice_id": 2,
-	"credit_card_number": "4580251236515201",
-	"result": "success"
+    "id": 2,
+    "invoice_id": 2,
+    "credit_card_number": "4580251236515201",
+    "result": "success"
   },
   {
     "id": 3,
-	"invoice_id": 4,
-	"credit_card_number": "4354495077693036",
-	"result": "success"
+    "invoice_id": 4,
+    "credit_card_number": "4354495077693036",
+    "result": "success"
   }
 ]
 ```
@@ -273,19 +273,19 @@ localhost:3000/api/v1/customers
 ```json
 [
   {
-	"id": 1,
-	"first_name": "Joey",
-	"last_name": "Ondricka"
+    "id": 1,
+    "first_name": "Joey",
+    "last_name": "Ondricka"
   },
   {
-	"id": 2,
-	"first_name": "Cecelia",
-	"last_name": "Osinski"
+    "id": 2,
+    "first_name": "Cecelia",
+    "last_name": "Osinski"
   },
   {
-	"id": 3,
-	"first_name": "Mariah",
-	"last_name": "Toy"
+    "id": 3,
+    "first_name": "Mariah",
+    "last_name": "Toy"
   }
 ]
 ```
