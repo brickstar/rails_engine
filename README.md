@@ -40,6 +40,9 @@ $ rails s
 ``RSpec-Rails 3.8.0``
 
 ##
+### Database Schema
+![sales_engine](https://user-images.githubusercontent.com/33355897/44249305-7d186e00-a1ac-11e8-9b91-3a6e38c9b7d7.png)
+##
 ## Endpoints
 
 ###### ``` *  All references to :id in endpoints should be replaced with an        integer corresponding to the desired record  ```
