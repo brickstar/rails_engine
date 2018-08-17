@@ -1,6 +1,6 @@
 # Rails Engine
 
-This is a Rails-based versioned JSON API built using ActiveRecord that allows users to consume data from the SalesEngine data schema.
+This is a Rails-based versioned REST API built using ActiveRecord. It currently only supports GET requests that allow users to consume data from the SalesEngine data schema. All output is currently in JSON format.
 
 ##
 
@@ -434,9 +434,9 @@ In addition to queries to single resources, relationship data is also available
 
 #### All Merchants
 
-* `GET /api/v1/merchants/most_revenue?quantity=x` returns the top `x` merchants ranked by total revenue
-* `GET /api/v1/merchants/most_items?quantity=x` returns the top `x` merchants ranked by total number of items sold
-* `GET /api/v1/merchants/revenue?date=x` returns the total revenue for date `x` across all merchants
+* `localhost:3000/api/v1/merchants/most_revenue?quantity=x` returns the top `x` merchants ranked by total revenue
+* `localhost:3000/api/v1/merchants/most_items?quantity=x` returns the top `x` merchants ranked by total number of items sold
+* `localhost:3000/api/v1/merchants/revenue?date=x` returns the total revenue for date `x` across all merchants
 
 Assume the dates provided match the format of a standard ActiveRecord timestamp.
 
