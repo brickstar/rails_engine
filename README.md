@@ -42,7 +42,7 @@ $ rails s
 ##
 ## Endpoints
 
-###### ``` *  All references to :id in endpoints should be replaced with an        integer corresponding to the desired record  *```
+###### ``` *  All references to :id in endpoints should be replaced with an        integer corresponding to the desired record  ```
 #### Merchant Endpoints
 
 ##### Index
