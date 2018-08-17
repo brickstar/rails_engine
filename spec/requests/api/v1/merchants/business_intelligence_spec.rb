@@ -104,4 +104,24 @@ describe "Merchants business intelligence API" do
       expect(total_revenue[:total_revenue]).to eq("0")
     end
   end
+
+  describe "/merchants/favorite_customer" do
+    it "returns customer who conducted the most successful transactions" do
+      merchant = create(:merchant)
+      customer_1 = create(:customer)
+      customer_2 = create(:customer)
+      create_list(:invoice, 2, customer: customer_1, merchant: merchant)
+      create_list(:invoice, 3, customer: customer_2, merchant: merchant)
+
+      get "/api/v1/merchants/#{merchant.id}/favorite_customer"
+
+      expect(response).to be_successful
+
+      customer = JSON.parse(response.body, symbolize_names: true)
+
+      expect(customer).to have_key(:first_name)
+      expect(customer).to have_key(:last_name)
+      expect(customer[:id]).to eq(customer_2.id)
+    end
+  end
 end

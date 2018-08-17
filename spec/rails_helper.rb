@@ -14,6 +14,13 @@ SimpleCov.start 'rails' do
   add_filter "app/mailers/application_mailer.rb"
 end
 
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+
 begin
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
