@@ -426,6 +426,7 @@ In addition to queries to single resources, relationship data is also available
 * `localhost:3000/api/v1/customers/:id/invoices` returns a collection of associated invoices
 * `localhost:3000/api/v1/customers/:id/transactions` returns a collection of associated transactions
 
+##
 ### Business Intelligence Endpoints
 
 
