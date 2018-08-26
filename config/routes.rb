@@ -18,13 +18,6 @@ Rails.application.routes.draw do
           get '/favorite_customer', to: 'favorite_customer#show'
         end
       end
-      #
-      # resources :merchants, only: [:index, :show]  do
-      #   get '/items', to: 'merchants/items#index'
-      #   get '/invoices', to: 'merchants/invoices#index'
-      #   get '/revenue', to: 'merchants/revenue#show'
-      #   get '/favorite_customer', to: 'merchants/favorite_customer#show'
-      # end
 
       namespace :invoice_items do
         get '/find_all', to: 'search#index'
@@ -80,10 +73,12 @@ Rails.application.routes.draw do
         get '/random', to: 'random#show'
       end
 
-      resources :customers, only: [:index, :show] do
-        get '/invoices', to: 'customer_invoices#index'
-        get '/transactions', to: 'customer_transactions#index'
-        get '/favorite_merchant', to: 'customer_favorite_merchant#show'
+      scope module: 'customers' do
+        resources :customers, only: [:index, :show] do
+          get '/invoices', to: 'invoices#index'
+          get '/transactions', to: 'transactions#index'
+          get '/favorite_merchant', to: 'favorite_merchant#show'
+        end
       end
     end
   end
