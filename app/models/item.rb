@@ -17,10 +17,20 @@ class Item < ApplicationRecord
 
   def self.with_most_items(limit=5)
     select("items.*, sum(invoice_items.quantity) AS item_count")
-    .joins(:invoice_items, invoices: :transactions)
+    .joins(invoices: :transactions)
     .merge(Transaction.unscoped.success)
     .group(:id)
     .order("item_count DESC")
     .limit(limit)
+  end
+
+  def best_day
+    invoices
+    .select('invoices.updated_at, sum(invoice_items.quantity) AS invoice_count')
+    .joins(:invoice_items)
+    .group(:updated_at, :id)
+    .order('invoice_count DESC, invoices.updated_at DESC')
+    .limit(1)
+    .take
   end
 end
