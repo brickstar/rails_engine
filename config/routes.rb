@@ -10,12 +10,21 @@ Rails.application.routes.draw do
         get '/revenue', to: 'total_revenue#show'
       end
 
-      resources :merchants, only: [:index, :show]  do
-        get '/items', to: 'merchants/items#index'
-        get '/invoices', to: 'merchants/invoices#index'
-        get '/revenue', to: 'merchants/revenue#show'
-        get '/favorite_customer', to: 'merchants/favorite_customer#show'
+      scope module: 'merchants' do
+        resources :merchants, only: [:index, :show]  do
+          get '/items', to: 'items#index'
+          get '/invoices', to: 'invoices#index'
+          get '/revenue', to: 'revenue#show'
+          get '/favorite_customer', to: 'favorite_customer#show'
+        end
       end
+      #
+      # resources :merchants, only: [:index, :show]  do
+      #   get '/items', to: 'merchants/items#index'
+      #   get '/invoices', to: 'merchants/invoices#index'
+      #   get '/revenue', to: 'merchants/revenue#show'
+      #   get '/favorite_customer', to: 'merchants/favorite_customer#show'
+      # end
 
       namespace :invoice_items do
         get '/find_all', to: 'search#index'

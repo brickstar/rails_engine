@@ -113,7 +113,7 @@ describe "Merchants business intelligence API" do
       create_list(:invoice, 2, customer: customer_1, merchant: merchant)
       create_list(:invoice, 3, customer: customer_2, merchant: merchant)
 
-      get "/api/v1/merchants/#{merchant.id}/favorite_customer"
+      get api_v1_merchant_favorite_customer_path(merchant)
 
       expect(response).to be_successful
 
