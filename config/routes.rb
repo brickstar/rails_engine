@@ -69,8 +69,10 @@ Rails.application.routes.draw do
         get '/random', to: 'random#show'
       end
 
-      resources :transactions, only: [:index, :show] do
-        get '/invoice', to: 'transactions_invoice#show'
+      scope module: 'transactions' do
+        resources :transactions, only: [:index, :show] do
+          get '/invoice', to: 'invoice#show'
+        end
       end
 
       namespace :customers do
