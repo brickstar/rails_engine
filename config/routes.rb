@@ -10,11 +10,13 @@ Rails.application.routes.draw do
         get '/revenue', to: 'total_revenue#show'
       end
 
-      resources :merchants, only: [:index, :show] do
-        get '/items', to: 'merchant_items#index'
-        get '/invoices', to: 'merchant_invoices#index'
-        get '/revenue', to: 'merchant_revenue#show'
-        get '/favorite_customer', to: 'merchant_favorite_customer#show'
+      scope module: 'merchants' do
+        resources :merchants, only: [:index, :show]  do
+          get '/items', to: 'items#index'
+          get '/invoices', to: 'invoices#index'
+          get '/revenue', to: 'revenue#show'
+          get '/favorite_customer', to: 'favorite_customer#show'
+        end
       end
 
       namespace :invoice_items do
@@ -23,9 +25,11 @@ Rails.application.routes.draw do
         get '/random', to: 'random#show'
       end
 
-      resources :invoice_items, only: [:index, :show] do
-        get '/item', to: 'invoice_items_item#show'
-        get '/invoice', to: 'invoice_items_invoice#show'
+      scope module: 'invoice_items' do
+        resources :invoice_items, only: [:index, :show] do
+          get '/item', to: 'item#show'
+          get '/invoice', to: 'invoice#show'
+        end
       end
 
       namespace :invoices do
@@ -34,12 +38,14 @@ Rails.application.routes.draw do
         get '/random', to: 'random#show'
       end
 
-      resources :invoices, only: [:index, :show] do
-        get '/transactions', to: 'invoice_transactions#index'
-        get '/invoice_items', to: 'invoice_invoice_items#index'
-        get '/items', to: 'invoices_items#index'
-        get '/customer', to: 'invoice_customer#show'
-        get '/merchant', to: 'invoice_merchant#show'
+      scope module: 'invoices' do
+        resources :invoices, only: [:index, :show] do
+          get '/transactions', to: 'transactions#index'
+          get '/invoice_items', to: 'invoice_items#index'
+          get '/items', to: 'items#index'
+          get '/customer', to: 'customer#show'
+          get '/merchant', to: 'merchant#show'
+        end
       end
 
       namespace :items do
@@ -50,10 +56,12 @@ Rails.application.routes.draw do
         get '/most_items', to: 'most_items#index'
       end
 
-      resources :items, only: [:index, :show] do
-        get '/merchant', to: 'item_merchant#show'
-        get '/invoice_items', to: 'item_invoice_items#show'
-        get '/best_day', to: 'best_day#show'
+      scope module: 'items' do
+        resources :items, only: [:index, :show] do
+          get '/merchant', to: 'merchant#show'
+          get '/invoice_items', to: 'invoice_items#show'
+          get '/best_day', to: 'best_day#show'
+        end
       end
 
       namespace :transactions do
@@ -62,8 +70,10 @@ Rails.application.routes.draw do
         get '/random', to: 'random#show'
       end
 
-      resources :transactions, only: [:index, :show] do
-        get '/invoice', to: 'transactions_invoice#show'
+      scope module: 'transactions' do
+        resources :transactions, only: [:index, :show] do
+          get '/invoice', to: 'invoice#show'
+        end
       end
 
       namespace :customers do
@@ -72,10 +82,12 @@ Rails.application.routes.draw do
         get '/random', to: 'random#show'
       end
 
-      resources :customers, only: [:index, :show] do
-        get '/invoices', to: 'customer_invoices#index'
-        get '/transactions', to: 'customer_transactions#index'
-        get '/favorite_merchant', to: 'customer_favorite_merchant#show'
+      scope module: 'customers' do
+        resources :customers, only: [:index, :show] do
+          get '/invoices', to: 'invoices#index'
+          get '/transactions', to: 'transactions#index'
+          get '/favorite_merchant', to: 'favorite_merchant#show'
+        end
       end
     end
   end

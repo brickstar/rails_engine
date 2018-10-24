@@ -1,4 +1,4 @@
-class Api::V1::MerchantRevenueController < ApplicationController
+class Api::V1::Merchants::MerchantRevenueController < ApplicationController
 
   def show
     if params[:date]
