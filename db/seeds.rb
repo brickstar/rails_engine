@@ -1,3 +1,5 @@
+source 'https://rubygems.org'
+
 require 'faker'
 
 248.times do
