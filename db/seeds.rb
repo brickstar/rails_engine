@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'faker'
 
 248.times do
   create(:item)
