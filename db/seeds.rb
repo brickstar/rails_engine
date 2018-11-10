@@ -1,4 +1,5 @@
-@customer = Customer.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
+require 'rails_helper'
+
 248.times do
   create(:item)
 end
